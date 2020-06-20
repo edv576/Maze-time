@@ -6,6 +6,7 @@ public class ShaonController : MonoBehaviour
 {
 
     Animator anim;
+    public float rotationSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,9 +28,10 @@ public class ShaonController : MonoBehaviour
             anim.SetBool("jump", false);
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             anim.SetFloat("turn", 1.0f);
+            transform.eulerAngles += new Vector3(0, rotationSpeed * Time.deltaTime, 0);
         }
 
         if (Input.GetKeyUp(KeyCode.RightArrow))
@@ -37,9 +39,10 @@ public class ShaonController : MonoBehaviour
             anim.SetFloat("turn", 0);
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             anim.SetFloat("turn", -1.0f);
+            transform.eulerAngles -= new Vector3(0, rotationSpeed * Time.deltaTime, 0);
         }
 
         if (Input.GetKeyUp(KeyCode.LeftArrow))
