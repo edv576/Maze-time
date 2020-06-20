@@ -731,7 +731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1705534067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -748,9 +748,12 @@ MonoBehaviour:
   columns: 2
   wall: {fileID: 140164082451121432, guid: febd11a56a4716b43a5dd440cae9de1b, type: 3}
   floor: {fileID: 3215356389284755896, guid: f9cbf23d3036adb4bb96b992035c6ca9, type: 3}
+  corner: {fileID: 0}
   playerCharacter: {fileID: 2089584566}
   widthInput: {fileID: 532359008}
   heightInput: {fileID: 1976422282}
+  inputCanvas: {fileID: 0}
+  exploreButton: {fileID: 0}
   ortoCamera: {fileID: 525918523}
 --- !u!4 &1705534068
 Transform:

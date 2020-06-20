@@ -14,6 +14,8 @@ public class MazeController : MonoBehaviour
     public GameObject playerCharacter;
     public InputField widthInput;
     public InputField heightInput;
+    public GameObject inputCanvas;
+    public GameObject exploreButton;
     public Camera ortoCamera;
     float size;
     float thickness;
@@ -23,16 +25,19 @@ public class MazeController : MonoBehaviour
     private int currentColumn = 0;
     private bool scanComplete = false;
 
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
     // Start is called before the first frame update
     void Start()
     {
-        ////All the floors and walls are created
-        //CreateGrid();
-        ////Algorithm is run to carve a path from top left to bottom right
-        //HuntAndKill();
         heightInput.text = rows.ToString();
         widthInput.text = columns.ToString();
-        GenerateGrid();
+        //GenerateGrid();
+        ortoCamera.cullingMask = 1 << LayerMask.NameToLayer("UI");
+
     }
 
     void CreateGrid()
@@ -531,6 +536,7 @@ public class MazeController : MonoBehaviour
     }
 
 
+
     public void Regenerate()
     {
         int rowsI = 2;
@@ -547,12 +553,51 @@ public class MazeController : MonoBehaviour
         }
 
         GenerateGrid();
+        ShowUI(!inputCanvas);
+        heightInput.text = rows.ToString();
+        widthInput.text = columns.ToString();
+
+        if(rows < 15 && columns < 15)
+        {
+            exploreButton.SetActive(true);
+        }
+        else
+        {
+            exploreButton.SetActive(false);
+        }
+
+        
     } 
+
+    public void StartExploration()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    void ShowUI(bool show)
+    {
+        if (show)
+        {
+            ortoCamera.cullingMask = 1 << LayerMask.NameToLayer("UI");
+            inputCanvas.SetActive(true);
+        }
+        else
+        {
+            ortoCamera.cullingMask = 1 << LayerMask.NameToLayer("Maze");
+            inputCanvas.SetActive(false);
+        }
+
+    }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+
+            ShowUI(!inputCanvas.activeSelf);
+
+        }
 
 
     }
