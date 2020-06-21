@@ -28,24 +28,24 @@ public class ShaonController : MonoBehaviour
             anim.SetBool("jump", false);
         }
 
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             anim.SetFloat("turn", 1.0f);
             transform.eulerAngles += new Vector3(0, rotationSpeed * Time.deltaTime, 0);
         }
 
-        if (Input.GetKeyUp(KeyCode.RightArrow))
+        if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D))
         {
             anim.SetFloat("turn", 0);
         }
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             anim.SetFloat("turn", -1.0f);
             transform.eulerAngles -= new Vector3(0, rotationSpeed * Time.deltaTime, 0);
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A))
         {
             anim.SetFloat("turn", 0);
         }

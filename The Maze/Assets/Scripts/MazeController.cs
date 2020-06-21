@@ -18,6 +18,7 @@ public class MazeController : MonoBehaviour
     public GameObject exploreButton;
     public Camera ortoCamera;
     float size;
+    float heightWall;
     float thickness;
 
     private MazeCell[,] grid;
@@ -44,6 +45,7 @@ public class MazeController : MonoBehaviour
     {
         size = floor.transform.localScale.x;
         thickness = floor.transform.localScale.y;
+        heightWall = wall.transform.localScale.y;
         grid = new MazeCell[rows, columns];
 
 
@@ -55,16 +57,16 @@ public class MazeController : MonoBehaviour
                 GameObject floorTile = Instantiate(floor, new Vector3(j * size, 0, -i * size), Quaternion.identity);
                 floorTile.name = "Floor_" + i + "_" + j;
 
-                GameObject upWall = Instantiate(wall, new Vector3(j * size, (size + thickness) / 2, -i * size + (size - thickness) / 2), Quaternion.identity);
+                GameObject upWall = Instantiate(wall, new Vector3(j * size, (heightWall + thickness) / 2, -i * size + (size - thickness) / 2), Quaternion.identity);
                 upWall.name = "UpWall_" + i + "_" + j;
 
-                GameObject downWall = Instantiate(wall, new Vector3(j * size, (size + thickness) / 2, -i * size - (size - thickness) / 2), Quaternion.identity);
+                GameObject downWall = Instantiate(wall, new Vector3(j * size, (heightWall + thickness) / 2, -i * size - (size - thickness) / 2), Quaternion.identity);
                 downWall.name = "DownWall_" + i + "_" + j;
 
-                GameObject leftWall = Instantiate(wall, new Vector3(j * size - (size - thickness) / 2, (size + thickness) / 2, -i * size), Quaternion.Euler(0, 90, 0));
+                GameObject leftWall = Instantiate(wall, new Vector3(j * size - (size - thickness) / 2, (heightWall + thickness) / 2, -i * size), Quaternion.Euler(0, 90, 0));
                 leftWall.name = "LeftWall_" + i + "_" + j;
 
-                GameObject rightWall = Instantiate(wall, new Vector3(j * size + (size - thickness) / 2, (size + thickness) / 2, -i * size), Quaternion.Euler(0, 90, 0));
+                GameObject rightWall = Instantiate(wall, new Vector3(j * size + (size - thickness) / 2, (heightWall + thickness) / 2, -i * size), Quaternion.Euler(0, 90, 0));
                 rightWall.name = "RightWall_" + i + "_" + j;
 
                 grid[i, j] = new MazeCell();

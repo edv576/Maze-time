@@ -6863,7 +6863,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4696813546378747884}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96d888077ccbfef4992dd0762aa13f72, type: 3}
   m_Name: 
@@ -6871,7 +6871,9 @@ MonoBehaviour:
   speedH: 2
   speedV: 2
   forward: {x: 0, y: 0, z: 0}
+  anim: {fileID: 4696813545968818875}
   canRotateHead: 1
+  vertical: 0
 --- !u!20 &4696813546378747890
 Camera:
   m_ObjectHideFlags: 0
@@ -6922,7 +6924,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4696813546378747884}
   m_LocalRotation: {x: 0.09836449, y: -0, z: -0, w: 0.9951505}
-  m_LocalPosition: {x: 0, y: 1.182, z: -1.4899998}
+  m_LocalPosition: {x: 0, y: 1.209, z: -1.396}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4696813545958945975}
