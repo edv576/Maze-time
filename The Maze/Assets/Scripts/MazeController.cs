@@ -10,6 +10,8 @@ public class MazeController : MonoBehaviour
     public int columns = 2;
     public GameObject wall;
     public GameObject floor;
+    public GameObject clearDoor;
+    public GameObject victoryFloor;
     public GameObject corner;
     public GameObject playerCharacter;
     public InputField widthInput;
@@ -17,6 +19,8 @@ public class MazeController : MonoBehaviour
     public GameObject inputCanvas;
     public GameObject exploreButton;
     public Camera ortoCamera;
+    public RenderTexture cameraTexture;
+
     float size;
     float heightWall;
     float thickness;
@@ -25,19 +29,50 @@ public class MazeController : MonoBehaviour
     private int currentRow = 0;
     private int currentColumn = 0;
     private bool scanComplete = false;
+    
 
 
     private void Awake()
     {
         DontDestroyOnLoad(this);
+        
     }
     // Start is called before the first frame update
     void Start()
     {
-        heightInput.text = rows.ToString();
-        widthInput.text = columns.ToString();
-        //GenerateGrid();
-        ortoCamera.cullingMask = 1 << LayerMask.NameToLayer("UI");
+        if (heightInput)
+        {
+            heightInput.text = rows.ToString();
+        }
+
+        if (widthInput)
+        {
+            widthInput.text = columns.ToString();
+        }
+
+        ortoCamera = GameObject.Find("Orto camera").GetComponent<Camera>();
+
+        if (ortoCamera)
+        {
+            ortoCamera.cullingMask = 1 << LayerMask.NameToLayer("UI");
+        }
+
+
+
+        //if (transform.childCount > 0)
+        //{
+        //    RepositionOrtoCamera();
+        //}
+
+        //if (ortoCamera && ortoCamera.CompareTag("MainCamera"))
+        //{
+
+        //    ortoCamera.cullingMask = 1 << LayerMask.NameToLayer("UI");
+
+        //}
+
+
+
 
     }
 
@@ -471,7 +506,7 @@ public class MazeController : MonoBehaviour
                 {
                     Vector3 cornerPosition = grid[i, j].floorTile.transform.position;
                     cornerPosition.x -= size / 2 - thickness/2;
-                    cornerPosition.y = (size + thickness) / 2;
+                    cornerPosition.y = (heightWall + thickness) / 2;
                     cornerPosition.z += size / 2 - thickness/2;
                     GameObject cornerFix = Instantiate(corner, cornerPosition, Quaternion.identity);
                     cornerFix.transform.parent = transform;
@@ -483,7 +518,7 @@ public class MazeController : MonoBehaviour
                 {
                     Vector3 cornerPosition = grid[i, j].floorTile.transform.position;
                     cornerPosition.x += size / 2 - thickness / 2;
-                    cornerPosition.y = (size + thickness) / 2;
+                    cornerPosition.y = (heightWall + thickness) / 2;
                     cornerPosition.z += size / 2 - thickness / 2;
                     GameObject cornerFix = Instantiate(corner, cornerPosition, Quaternion.identity);
                     cornerFix.transform.parent = transform;
@@ -495,7 +530,7 @@ public class MazeController : MonoBehaviour
                 {
                     Vector3 cornerPosition = grid[i, j].floorTile.transform.position;
                     cornerPosition.x -= size / 2 - thickness / 2;
-                    cornerPosition.y = (size + thickness) / 2;
+                    cornerPosition.y = (heightWall + thickness) / 2;
                     cornerPosition.z -= size / 2 - thickness / 2;
                     GameObject cornerFix = Instantiate(corner, cornerPosition, Quaternion.identity);
                     cornerFix.transform.parent = transform;
@@ -507,7 +542,7 @@ public class MazeController : MonoBehaviour
                 {
                     Vector3 cornerPosition = grid[i, j].floorTile.transform.position;
                     cornerPosition.x += size / 2 - thickness / 2;
-                    cornerPosition.y = (size + thickness) / 2;
+                    cornerPosition.y = (heightWall + thickness) / 2;
                     cornerPosition.z -= size / 2 - thickness / 2;
                     GameObject cornerFix = Instantiate(corner, cornerPosition, Quaternion.identity);
                     cornerFix.transform.parent = transform;
@@ -525,7 +560,11 @@ public class MazeController : MonoBehaviour
     {
         foreach(Transform t in transform)
         {
-            Destroy(t.gameObject);
+            if(t.gameObject.name != "Orto camera")
+            {
+                Destroy(t.gameObject);
+            }
+            
         }
 
         CreateGrid();
@@ -569,10 +608,22 @@ public class MazeController : MonoBehaviour
         }
 
         
-    } 
+    }
+    
+    void SummonStartAndFinish()
+    {
+        GameObject cf = Instantiate(clearDoor, new Vector3(0.0f * size - (size - thickness) / 2, (heightWall + thickness) / 2, -0.0f * size), Quaternion.Euler(0, 90, 0));
+        cf.transform.parent = transform;
+        GameObject vf = Instantiate(victoryFloor, new Vector3(columns * size, 0, -(rows - 1) * size), Quaternion.identity);
+        vf.transform.parent = transform;
+
+    }
 
     public void StartExploration()
     {
+        ortoCamera.cullingMask = 1 << LayerMask.NameToLayer("Maze") | 1 << LayerMask.NameToLayer("Reference");
+        ortoCamera.targetTexture = cameraTexture;
+        SummonStartAndFinish();
         SceneManager.LoadScene(2);
     }
 
@@ -591,16 +642,35 @@ public class MazeController : MonoBehaviour
 
     }
 
+    public void BackToGeneration()
+    {
+        if (GameObject.Find("Checkpoint"))
+        {
+            transform.parent = GameObject.Find("Checkpoint").transform;
+        }
+        
+    }
+
+    public void DestroyMaze()
+    {
+        foreach (Transform t in transform)
+        {
+            Destroy(t.gameObject);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
+            if (inputCanvas)
+            {
+                ShowUI(!inputCanvas.activeSelf);
 
-            ShowUI(!inputCanvas.activeSelf);
+            }
+            
 
         }
-
-
     }
 }
