@@ -14,7 +14,7 @@ public class MouseCameraMovement : MonoBehaviour
     public Vector3 forward;
 
     //Initial pitch of the camera
-    private float pitch = 0.0f;
+    public float pitch = 0.0f;
 
 
     //Initializes the head rotation 
@@ -42,6 +42,8 @@ public class MouseCameraMovement : MonoBehaviour
         if (canRotateHead)
         {
             pitch -= speedV * Input.GetAxis("Mouse Y");
+
+            pitch = Mathf.Clamp(pitch,-40.0f, 40.0f);
 
             transform.eulerAngles = new Vector3(pitch, transform.eulerAngles.y, 0.0f);
 

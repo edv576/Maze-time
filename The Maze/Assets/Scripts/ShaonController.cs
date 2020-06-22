@@ -33,7 +33,8 @@ public class ShaonController : MonoBehaviour
         anim = GetComponent<Animator>();
 
         //Gets the player to the initial position of the maze.
-        transform.position = new Vector3(0.0f, transform.position.y, 0.0f);
+        Vector3 firstPos = GameObject.Find("Floor_0_0").transform.position;
+        transform.position = new Vector3(firstPos.x, transform.position.y, firstPos.z);
         
         //Get the player camera from the children's components.
         playerCamera = GetComponentInChildren<Camera>();
