@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MazeEvents : MonoBehaviour
 {
-
+    //Script given to the checkpoint object. Lets the player go back to the maze generation scene.
     GameObject maze;
     // Start is called before the first frame update
     void Start()
@@ -19,6 +19,7 @@ public class MazeEvents : MonoBehaviour
         
     }
 
+    //Destroys the current maze and goes to the maze generation scene.
     public void GoBackToGeneration()
     {
         maze.GetComponent<MazeController>().DestroyMaze();

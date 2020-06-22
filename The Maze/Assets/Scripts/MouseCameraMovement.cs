@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MouseCameraMovement : MonoBehaviour
 {
+
+    //Defines the speed of the camera
     public float speedH = 2.0f;
     public float speedV = 2.0f;
 
@@ -33,17 +35,7 @@ public class MouseCameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //vertical = anim.GetFloat("vertical");
-        //if (anim.GetFloat("vertical") > -0.1 && anim.GetFloat("vertical") < 0.1 && anim.GetFloat("horizontal") > -0.1 && anim.GetFloat("horizontal") < 0.1)
-        //{
-        //    canRotateHead = true;
-        //    //transform.eulerAngles = new Vector3(0.0f, transform.parent.eulerAngles.y, 0.0f);
-        //}
-        //else
-        //{
-        //    canRotateHead = false;
-        //    //transform.eulerAngles = new Vector3(0.0f, transform.parent.eulerAngles.y, 0.0f);
-        //}
+
 
         if (canRotateHead)
         {

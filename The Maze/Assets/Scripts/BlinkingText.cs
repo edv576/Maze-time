@@ -15,15 +15,16 @@ public class BlinkingText : MonoBehaviour
 
     {
 
-        //text = GetComponent<Text>();
+        //Get text component from the game object
         textContinue = GetComponent<TextMeshProUGUI>();
 
+        //Call function for blinking text
         StartBlinking();
 
     }
 
 
-
+    //Corroutine in charge of the text blinking
     IEnumerator Blink()
 
     {
@@ -31,7 +32,7 @@ public class BlinkingText : MonoBehaviour
         while (true)
 
         {
-            
+            //Pick what to do case the alpha of the color of the text is certain number
             switch (textContinue.color.a.ToString())
 
             {
@@ -59,7 +60,7 @@ public class BlinkingText : MonoBehaviour
     }
 
 
-
+    //Call the blinking coroutine. First stops it then starts it again
     void StartBlinking()
 
     {
@@ -71,7 +72,7 @@ public class BlinkingText : MonoBehaviour
     }
 
 
-
+    //Stops the blinking coroutine
     void StopBlinking()
 
     {
