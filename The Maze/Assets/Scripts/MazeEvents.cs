@@ -16,7 +16,10 @@ public class MazeEvents : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     //Destroys the current maze and goes to the maze generation scene.

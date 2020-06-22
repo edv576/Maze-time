@@ -10,24 +10,25 @@ public class MouseCameraMovement : MonoBehaviour
     public float speedH = 2.0f;
     public float speedV = 2.0f;
 
+    //Sets the forward vector of the camera
     public Vector3 forward;
 
-    private float yaw = 0.0f;
+    //Initial pitch of the camera
     private float pitch = 0.0f;
 
-    public Animator anim;
+
+    //Initializes the head rotation 
     public bool canRotateHead = false;
 
-    public float vertical;
 
-    Vector3 initialOrientation;
+
 
 
 
     // Use this for initialization
     void Start()
     {
-        initialOrientation = transform.eulerAngles;
+
     }
 
     
@@ -36,10 +37,10 @@ public class MouseCameraMovement : MonoBehaviour
     void Update()
     {
 
-
+        //If the player can rotate the head it gets the value from the mouse input and multiplies by the speed.
+        //Then gives the new rotation to the camera.
         if (canRotateHead)
         {
-            //yaw += speedH * Input.GetAxis("Mouse X");
             pitch -= speedV * Input.GetAxis("Mouse Y");
 
             transform.eulerAngles = new Vector3(pitch, transform.eulerAngles.y, 0.0f);

@@ -1592,7 +1592,6 @@ MonoBehaviour:
   exploreButton: {fileID: 412789006}
   ortoCamera: {fileID: 525918523}
   cameraTexture: {fileID: 8400000, guid: dc519c67f9b709f46a45a9f455e4d421, type: 2}
-  winClip: {fileID: 8300000, guid: 87dcc994a78509e429e4523a21a71fb1, type: 3}
 --- !u!4 &1705534068
 Transform:
   m_ObjectHideFlags: 0
@@ -1937,6 +1936,7 @@ GameObject:
   - component: {fileID: 1908133905}
   - component: {fileID: 1908133904}
   - component: {fileID: 1908133903}
+  - component: {fileID: 1908133907}
   m_Layer: 5
   m_Name: Input canvas
   m_TagString: Untagged
@@ -2024,6 +2024,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1908133907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908133902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee8bbb071a9b0b84eb28d77585d25e3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1976422280
 GameObject:
   m_ObjectHideFlags: 0
