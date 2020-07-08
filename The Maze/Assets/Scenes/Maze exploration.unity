@@ -379,7 +379,7 @@ PrefabInstance:
     - target: {fileID: 3413777061332218237, guid: f9cbf23d3036adb4bb96b992035c6ca9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3413777061332218237, guid: f9cbf23d3036adb4bb96b992035c6ca9,
         type: 3}
@@ -2006,7 +2006,7 @@ Transform:
   - {fileID: 750174466}
   - {fileID: 845866362}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4696813545958945977
 Transform:
@@ -6627,9 +6627,8 @@ MonoBehaviour:
   speedH: 2
   speedV: 2
   forward: {x: 0, y: 0, z: 0}
-  anim: {fileID: 4696813545968818875}
+  pitch: 0
   canRotateHead: 1
-  vertical: 0
 --- !u!20 &4696813546378747890
 Camera:
   m_ObjectHideFlags: 0
