@@ -7,6 +7,9 @@ public class IntroController : MonoBehaviour
 {
     //Only class on the intro scene. Just lets the player press a key to go to the maze generator
 
+
+    public UISoundsController uiSoundsController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +22,7 @@ public class IntroController : MonoBehaviour
         //Go to the maze generator scenes if the player presses the "E" key
         if (Input.GetKeyDown(KeyCode.E))
         {
+            uiSoundsController.PlayGoNextSceneSound();
             SceneManager.LoadScene(1);
         }
 

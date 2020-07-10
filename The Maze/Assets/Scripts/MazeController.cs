@@ -74,7 +74,8 @@ public class MazeController : MonoBehaviour
     //Flag that tells if there aren't unvisited maze cells that are adyacent to visited neighbor cells. Will be explained with more detail
     //when the algorithm functions are explained. The algorithm used for the maze creation is called Hunt and Kill. 
     private bool scanComplete = false;
-    
+
+    public UISoundsController uiSoundsController;
 
     //This used to prevent the created maze from being destroyed when going to the exploration scene.
     private void Awake()
@@ -753,6 +754,8 @@ public class MazeController : MonoBehaviour
         //Initializes the entrance door and the final floor.
         SummonStartAndFinish();
 
+        uiSoundsController.PlayGoNextSceneSound();
+
         //Loads the exploration scene.
         SceneManager.LoadScene(2);
     }
@@ -801,6 +804,7 @@ public class MazeController : MonoBehaviour
         //Shows or hides the input canvas if the user presses the "E" key.
         if (Input.GetKeyDown(KeyCode.E))
         {
+            uiSoundsController.PlayHideUISound();
             if (inputCanvas)
             {
                 ShowUI(!inputCanvas.activeSelf);
